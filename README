@@ -1,0 +1,2 @@
+srun -A fev@a100 --partition=compil --cpus-per-task=10 --hint=nomultithread ./deploy.sh
+srun -A fev@a100 --partition=gpu_p5 -C a100 --gres=gpu:1 --hint=nomultithread --cpus-per-task=16 ./run_one.sh sharded/text_data_00000000.parquet output/text_data_00000000.parquet
