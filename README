@@ -1,2 +1,12 @@
+Input parquet files go in ./sharded/
+Result gets saved to ./output/
+About 3k sentences take < 20h on A100
+
+./deploy.sh creates the environment, and downloads the models and code
+./run_all.sh creates a job.sbatch file for all input files
+sbatch job.sbatch lanches the job array
+
+Examples:
 srun -A fev@a100 --partition=compil --cpus-per-task=10 --hint=nomultithread ./deploy.sh
 srun -A fev@a100 --partition=gpu_p5 -C a100 --gres=gpu:1 --hint=nomultithread --cpus-per-task=16 ./run_one.sh sharded/text_data_00000000.parquet output/text_data_00000000.parquet
+
